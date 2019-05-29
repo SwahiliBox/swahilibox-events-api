@@ -1,0 +1,25 @@
+{
+  "name": "swahilibox-events-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:SwahiliBox/swahilibox-events-api.git",
+  "author": "swahilibox",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index",
+    "start:dev": "nodemon index"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "fancy-log": "^1.3.3",
+    "http-status": "^1.3.2",
+    "joi": "^14.3.1",
+    "morgan": "^1.9.1"
+  }
+}
