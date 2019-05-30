@@ -1,5 +1,6 @@
-require('dotenv').config();
-const joi = require('joi')
+import dotenv from 'dotenv'
+dotenv.config()
+import joi from 'joi'
 
 const envVarsSchema = joi.object({
   NODE_ENV: joi.string()
@@ -22,4 +23,4 @@ const config = {
   port: envVars.PORT,
 };
 
-module.exports = config;
+export default config

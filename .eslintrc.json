@@ -1,19 +1,32 @@
 {
     "env": {
         "jest": true,
-        "commonjs": true,
         "es6": true,
         "node": true
     },
-    "extends": "eslint:recommended",
+    "extends": [
+      "airbnb-base",
+      "prettier"
+    ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
     "parserOptions": {
-        "ecmaVersion": 2018
+        "ecmaVersion": 2018,
+        "sourceType": "module"
     },
+    "plugins": ["prettier"],
     "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true, 
+          "trailingComma": "all",
+          "bracketSpacing": true,
+          "semi": false
+        }
+      ],
       "indent": [
         "error",
         2

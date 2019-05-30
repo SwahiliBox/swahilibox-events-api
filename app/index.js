@@ -1,7 +1,7 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const morgan = require('morgan')
-const routes = require('./routes')
+import express from 'express'
+import bodyParser from 'body-parser'
+import morgan from 'morgan'
+import routes from './routes'
 
 const app = express()
 
@@ -12,4 +12,4 @@ if (app.get('env') === 'development') {
 
 routes(app)
 
-module.exports = app
+export default app
