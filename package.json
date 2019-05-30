@@ -9,6 +9,7 @@
         "start": "node -r esm index",
         "start:dev": "nodemon -r esm index",
         "test": "NODE_ENV=test jest --passWithNoTests"
+        "start:dev": "nodemon -r esm index"
     },
     "devDependencies": {
         "babel-eslint": "^10.0.1",
@@ -20,6 +21,7 @@
         "eslint-plugin-jsx-a11y": "^6.2.1",
         "eslint-plugin-prettier": "^3.1.0",
         "jest": "^24.8.0",
+        "eslint-plugin-react": "^7.13.0",
         "eslint-plugin-react": "^7.13.0",
         "nodemon": "^1.19.1",
         "prettier": "^1.17.1"
