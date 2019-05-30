@@ -5,39 +5,40 @@
         "node": true
     },
     "extends": [
-      "airbnb-base",
-      "prettier"
+        "airbnb-base",
+        "prettier"
     ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
     "plugins": ["prettier"],
     "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "singleQuote": true, 
-          "trailingComma": "all",
-          "bracketSpacing": true,
-          "semi": false
-        }
-      ],
-      "indent": [
-        "error",
-        2
-      ],
-      "quotes": [
-        "error",
-        "single"
-      ],
-      "semi": [
-        "error",
-        "never"
-      ]
+        "prettier/prettier": [
+            "error",
+            {
+                "singleQuote": true,
+                "trailingComma": "all",
+                "bracketSpacing": true,
+                "semi": false
+            }
+        ],
+        "indent": [
+            "error",
+            2
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "never"
+        ]
     }
 }
