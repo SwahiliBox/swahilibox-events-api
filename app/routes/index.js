@@ -4,10 +4,12 @@ import db from '../../database/models'
 const routes = app => {
   // pass the routes to the app for use
   // e.g app.use('/events', eventsRoutes);
+
   app.get('/users', async (req, res) => {
     const users = await db.User.findAll()
     return res.status(HttpStatus.OK).json({ users })
   })
+
   app.get('/', (req, res) =>
     res
       .status(HttpStatus.OK)

@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 
-module.exports = class User extends Sequelize.Model {
+module.exports = class Event extends Sequelize.Model {
   static init(sequelize) {
     return super.init(
       {
@@ -9,49 +9,54 @@ module.exports = class User extends Sequelize.Model {
           unique: true,
           primaryKey: true,
         },
-        firstName: {
+        name: {
           type: Sequelize.STRING,
-          allowNull: false,
-          field: 'first_name',
+          unique: true,
         },
-        lastName: {
-          type: Sequelize.STRING,
-          allowNull: false,
-          field: 'last_name',
-        },
-        email: {
+        location: {
           type: Sequelize.STRING,
           allowNull: false,
         },
-        password: {
-          type: Sequelize.STRING,
+        date: {
+          type: Sequelize.DATE,
           allowNull: false,
         },
-        roleId: {
+        time: {
+          type: Sequelize.DataTypes.TIME,
+          allowNull: false,
+          defaultValue: '14:00:00',
+        },
+        description: {
+          type: Sequelize.TEXT,
+          allowNull: false,
+        },
+        image_url: {
+          type: Sequelize.TEXT,
+          allowNull: true,
+        },
+        createdBy: {
           type: Sequelize.STRING,
           allowNull: true,
-          field: 'role_id',
+          field: 'created_by',
           references: {
             // model in the references should be the tableName
-            model: 'roles',
+            model: 'users',
             key: 'id',
           },
         },
       },
       {
-        tableName: 'users',
+        tableName: 'events',
         sequelize,
       },
     )
   }
 
   static associate(models) {
-    this.hasOne(models.Role)
-    this.hasMany(models.Event, { as: 'myEvents' })
-    this.belongsToMany(models.Event, {
-      as: 'myRsvps',
+    this.belongsToMany(models.User, {
+      as: 'guests',
       through: 'rsvp',
-      foreignKey: 'userId',
+      foreignKey: 'eventId',
     })
   }
 }
