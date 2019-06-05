@@ -30,9 +30,15 @@ module.exports = class Event extends Sequelize.Model {
           type: Sequelize.TEXT,
           allowNull: false,
         },
-        image_url: {
+        imageUrl: {
           type: Sequelize.TEXT,
           allowNull: true,
+          field: 'image_url',
+        },
+        rsvpEndDate: {
+          type: Sequelize.DATE,
+          allowNull: false,
+          field: 'rsvp_end_date',
         },
         createdBy: {
           type: Sequelize.STRING,
