@@ -73,9 +73,11 @@ Install dependencies
 
 `yarn install` (prefered) or `npm install`
 
-Then run the command below to start the application
+Then run the command below to start the application in development mode
 
-`yarn run start:dev`
+`yarn start:dev`
+or 
+`npm run start:dev`
 
 ### Switch to the master branch for stable/working features
 
