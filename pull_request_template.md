@@ -6,7 +6,7 @@
 
 #### Any background context you want to provide?
 
-#### What are the relevant pivotal tracker stories?
+#### What are the relevant tasks or issues?
 
 #### Screenshots (if appropriate)
 

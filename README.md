@@ -1,44 +1,89 @@
-# swahilibox-events-api
+<a href="https://codeclimate.com/github/SwahiliBox/swahilibox-events-api/maintainability"><img src="https://api.codeclimate.com/v1/badges/02fc20612d73a58fd81c/maintainability" /></a>
 
-SwahiliBox Events API develop with Express and PostgreSQL
+# Welcome to swahilibox events api
 
-## API Endpoints
+  An API that will provide a fucntionality for SwahiliBox  Admins to be able to
+  create and manage events.
+  On the other hand, other users of the system can be able to view and respond to the events. 
+  This will aid for better communication between SwahiliBox and the community
+  and hence better planing of activities going forward.
 
-| EndPoint                  | Functionality   |
-| ------------------------- | --------------- |
-| POST /api/v1/events       | Create an Event |
-| GET /api/v1/events        | Get All Events  |
-| GET /api/v1/events/:id    | Get an Event    |
-| PUT /api/v1/events/:id    | Update an Event |
-| DELETE /api/v1/events/:id | Delete an Event |
-|                           |
 
-### Technologies used to build the application
+## Application features
+Appart from normal authentication the app will provide the following
+functionality
 
-[Node.js](https://nodejs.org/en/)
+* Creating Events
+* Responding to Events
 
-[Expressjs](https://expressjs.com/)
+An Admin user can perform the following: 
 
-[PostgreSQL](https://www.postgresql.org/)
+* create an events.
+* view the events in the system.
+* edit and update events. 
+* delete events.
+* view RSVPs events in the system.
 
-[Jestjs](https://jestjs.io/)
+A normal user can perform the following: 
 
-#### How should this be manually tested
+* View a list of upcoming events.
+* Respond to the events they want to attend.
 
-Fork the repo here [Fork me](https://github.com/SwahiliBox/swahilibox-events-api)
+The following endpoints should be available to use once the API is complete:
 
-`git clone the forked repo in your machine`
+| EndPoint                            | Functionality                         |
+| -------------------------           | ------------------------------        |
+| POST     /api/v1/register           | Create a user account                 |
+| POST     /api/v1/login              | login a user                          |
+|                                     |                                       |
+| POST     /api/v1/events             | Create an Event                       |
+| GET      /api/v1/events             | Get All Events                        |
+| GET      /api/v1/events/:id         | Get an Event                          |
+| PUT      /api/v1/events/:id         | Update an Event                       |
+| DELETE   /api/v1/events/id          | Delete an Event                       |
+| POST     /api/v1/events/<id>/rsvp   | Register a user to an event(Rsvp)     |
+| GET      /api/v1/events/<id>/rsvp   | Get all event guests                  |
+|                                     |                                       |
 
-#### Change directory to develop
+### Technologies used to buildthe application
 
-`cd develop`
+[Expressjs](https://expressjs.com/) Framework
 
-#### Install dependencies
+[PostgreSQL](https://www.postgresql.org/) Database
 
-`yarn install` or
+[Jestjs](https://jestjs.io/) Testing Framework
 
-`npm install`
+[Sequelize](http://docs.sequelizejs.com/) ORM
 
-#### Then run the command below to start the application
+#### Getting started with the application
 
-`yarn run dev`
+Clone the repo [here](https://github.com/SwahiliBox/swahilibox-events-api) to your local machine
+
+[download](https://nodejs.org/en/download/) and install nodejs.
+
+[install](https://yarnpkg.com/en/docs/install) Yarn version for your operating system.
+
+Install PostgreSQL and create a database to be used by the application
+  - visit the official getting started [page](https://www.postgresql.org/docs/10/tutorial-start.html)
+  - Here is also a [tutorial](https://www.youtube.com/watch?v=e1MwsT5FJRQ) to do so on windows
+
+create a `.env` file and provide the necessary values as shown in the `.env.sample` file
+
+Install dependencies
+
+`yarn install` (prefered) or `npm install`
+
+Then run the command below to start the application in development mode
+
+`yarn start:dev`
+or 
+`npm run start:dev`
+
+### Switch to the master branch for stable/working features
+
+`git checkout master`
+
+The application is under constant development. The `develop` branch has the latest changes added into the app
+
+### Contributing to the application
+You can [fork](https://help.github.com/en/articles/fork-a-repo) the repo and contribute features you want included
