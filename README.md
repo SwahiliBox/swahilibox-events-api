@@ -84,6 +84,7 @@ Then run the command below to start the application in development mode
 The application is under constant development. The `develop` branch has the latest changes added into the app
 
 ### Contributing to the application
+ 
  1. clone the repo
  
        git clone https://github.com/SwahiliBox/swahilibox-events-api
@@ -91,17 +92,19 @@ The application is under constant development. The `develop` branch has the late
  2. Set up the app locally (Refer *Getting started with the application* above)
  3. Create a branch from develop
  
-        git checkout -b feature/implement-user-login
+        git checkout -b feature/<name-of-the-feature> (e.g feature/implement-user-login)
         
  4. Work on the task and push your changes to github repo.
  
         git add .
         
-        git commit -b "Implement user login"
+        git commit -m "Implement user login"
         
-        git push origin feature/implement-user-login
+        git push origin feature/<name-of-the-feature> (e.g feature/implement-user-login)
         
  5. Open a Pull Request to develop and a provide a very detail description of your PR.
+ 
+ For more info refer [Getting started with Git and Github](https://towardsdatascience.com/getting-started-with-git-and-github-6fcd0f2d4ac6).
  
  ### Other Ways to contribute
   1. Review open PRs
