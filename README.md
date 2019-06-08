@@ -1,4 +1,4 @@
-<a href="https://codeclimate.com/github/SwahiliBox/swahilibox-events-api/maintainability"><img src="https://api.codeclimate.com/v1/badges/02fc20612d73a58fd81c/maintainability" /></a>
+[![CircleCI](https://circleci.com/gh/SwahiliBox/swahilibox-events-api.svg?style=svg)](https://circleci.com/gh/SwahiliBox/swahilibox-events-api) <a href="https://codeclimate.com/github/SwahiliBox/swahilibox-events-api/maintainability"><img src="https://api.codeclimate.com/v1/badges/02fc20612d73a58fd81c/maintainability" /></a>
 
 # Welcome to swahilibox events api
 

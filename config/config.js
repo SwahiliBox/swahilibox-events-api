@@ -1,7 +1,5 @@
-import dotenv from 'dotenv'
-import joi from '@hapi/joi'
-
-dotenv.config()
+require('dotenv').config()
+const joi = require('@hapi/joi')
 
 const envVarsSchema = joi
   .object({
@@ -10,6 +8,13 @@ const envVarsSchema = joi
       .allow(['development', 'production', 'test', 'staging'])
       .required(),
     PORT: joi.number().default(8080),
+    DATABASE: joi.string().required(),
+    TEST_DB: joi.string().default('events_test_db'),
+    DATABASE_DIALECT: joi.string().default('postgres'),
+    DATABASE_PASSWORD: joi.string().default(null),
+    DATABASE_USER: joi.string().required(),
+    DATABASE_URL: joi.string().default(null),
+    HOST: joi.string().required(),
   })
   .unknown()
   .required()
@@ -23,6 +28,13 @@ if (error) {
 const config = {
   env: envVars.NODE_ENV || 'development',
   port: envVars.PORT,
+  databaseName: envVars.DATABASE,
+  testDbName: envVars.TEST_DB,
+  dbUsername: envVars.DATABASE_USER,
+  databaseDialect: envVars.DATABASE_DIALECT,
+  dbPassword: envVars.password,
+  databaseUrl: envVars.DATABASE_URL,
+  host: envVars.HOST,
 }
 
-export default config
+module.exports = config
