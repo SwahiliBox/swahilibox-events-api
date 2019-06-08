@@ -91,15 +91,15 @@ The application is under constant development. The `develop` branch has the late
  2. Set up the app locally (Refer *Getting started with the application* above)
  3. Create a branch from develop
  
-        git checkout -b feature/<name-of-the-feature>
+        git checkout -b feature/implement-user-login
         
  4. Work on the task and push your changes to github repo.
  
         git add .
         
-        git commit -b "commit message"
+        git commit -b "Implement user login"
         
-        git push origin feature/<name-of-the-feature>
+        git push origin feature/implement-user-login
         
  5. Open a Pull Request to develop and a provide a very detail description of your PR.
  
