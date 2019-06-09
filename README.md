@@ -45,7 +45,7 @@ The following endpoints should be available to use once the API is complete:
 | GET      /api/v1/events/<id>/rsvp   | Get all event guests                  |
 |                                     |                                       |
 
-### Technologies used to buildthe application
+### Technologies used to build the application
 
 [Expressjs](https://expressjs.com/) Framework
 
@@ -71,13 +71,11 @@ create a `.env` file and provide the necessary values as shown in the `.env.samp
 
 Install dependencies
 
-`yarn install` (prefered) or `npm install`
+`yarn install`
 
 Then run the command below to start the application in development mode
 
 `yarn start:dev`
-or 
-`npm run start:dev`
 
 ### Switch to the master branch for stable/working features
 
@@ -86,4 +84,30 @@ or
 The application is under constant development. The `develop` branch has the latest changes added into the app
 
 ### Contributing to the application
-You can [fork](https://help.github.com/en/articles/fork-a-repo) the repo and contribute features you want included
+ 
+ 1. clone the repo
+ 
+       git clone https://github.com/SwahiliBox/swahilibox-events-api
+       
+ 2. Set up the app locally (Refer *Getting started with the application* above)
+ 3. Create a branch from develop
+ 
+        git checkout -b feature/<name-of-the-feature> (e.g feature/implement-user-login)
+        
+ 4. Work on the task and push your changes to github repo.
+ 
+        git add .
+        
+        git commit -m "Implement user login"
+        
+        git push origin feature/<name-of-the-feature> (e.g feature/implement-user-login)
+        
+ 5. Open a Pull Request to develop and a provide a very detail description of your PR.
+ 
+ For more info refer [Getting started with Git and Github](https://towardsdatascience.com/getting-started-with-git-and-github-6fcd0f2d4ac6).
+ 
+ ### Other Ways to contribute
+  1. Review open PRs
+  2. Open an [issue](https://help.github.com/en/articles/about-issues)
+  
+ 
