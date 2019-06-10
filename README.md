@@ -67,11 +67,15 @@ Install PostgreSQL and create a database to be used by the application
   - visit the official getting started [page](https://www.postgresql.org/docs/10/tutorial-start.html)
   - Here is also a [tutorial](https://www.youtube.com/watch?v=e1MwsT5FJRQ) to do so on windows
 
-create a `.env` file and provide the necessary values as shown in the `.env.sample` file
+Create a `.env` file.Copy the contents of `.env.sample` file and paste them in your `.env` file. Replace the value of `DATABASE` with the name of the database you just created above. Same with `DATABASE_PASSWORD` and `DATABASE_USER`.
 
 Install dependencies
 
 `yarn install`
+
+Run database migrations to create the tables
+
+`yarn db:migrate`
 
 Then run the command below to start the application in development mode
 

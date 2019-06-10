@@ -32,7 +32,7 @@ const config = {
   testDbName: envVars.TEST_DB,
   dbUsername: envVars.DATABASE_USER,
   databaseDialect: envVars.DATABASE_DIALECT,
-  dbPassword: envVars.password,
+  dbPassword: envVars.DATABASE_PASSWORD,
   databaseUrl: envVars.DATABASE_URL,
   host: envVars.HOST,
 }
