@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node -r esm index",
-    "start:dev": "nodemon -r esm index",
+    "start:dev": "yarn db:migrate && nodemon -r esm index",
     "test": "NODE_ENV=test jest --passWithNoTests",
     "db:migrate": "node_modules/.bin/sequelize db:migrate",
     "migration:generate": "node_modules/.bin/sequelize migration:generate --name"
