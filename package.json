@@ -11,7 +11,6 @@
     "test": "NODE_ENV=test jest --passWithNoTests",
     "db:migrate": "node_modules/.bin/sequelize db:migrate",
     "migration:generate": "node_modules/.bin/sequelize migration:generate --name"
-
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
@@ -37,6 +36,8 @@
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.2",
     "sequelize": "^5.8.7",
-    "sequelize-cli": "^5.4.0"
+    "sequelize-cli": "^5.4.0",
+    "uuid": "^3.3.2",
+    "validate": "^4.5.1"
   }
 }

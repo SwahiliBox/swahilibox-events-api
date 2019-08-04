@@ -1,9 +1,13 @@
 import HttpStatus from 'http-status'
 import db from '../../database/models'
+import userRoutes from './user'
 
 const routes = app => {
   // pass the routes to the app for use
   // e.g app.use('/events', eventsRoutes);
+
+  app.use(userRoutes)
+
 
   app.get('/users', async (req, res) => {
     const users = await db.User.findAll()
