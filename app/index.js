@@ -12,4 +12,3 @@ if (app.get('env') === 'development') {
 routes(app)
 
 export default app
-  

@@ -30,6 +30,7 @@
   "dependencies": {
     "@babel/preset-env": "^7.5.5",
     "@hapi/joi": "^15.0.3",
+    "bcrypt": "^3.0.6",
     "dotenv": "^8.0.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
