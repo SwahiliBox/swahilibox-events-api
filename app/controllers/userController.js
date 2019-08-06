@@ -6,20 +6,16 @@ import encryptPassword from '../../lib/helpers/encrypt'
 class UserController {
   static async signup(req, res) {
     const errors = validateSignupData(req.body)
-    // eslint-disable-next-line no-console
-    console.log(errors)
 
     if (errors.length) {
       return res.status(400).json({ message: errors[0].message })
     }
-
-    // eslint-disable-next-line camelcase
-    const { first_name, last_name, email, password } = req.body
+    const { firstName, lastName, email, password } = req.body
     const hashedPassword = encryptPassword.generateHash(password)
     const userData = {
       id: uuid(),
-      firstName: first_name,
-      lastName: last_name,
+      firstName,
+      lastName,
       email,
       password: hashedPassword,
     }
