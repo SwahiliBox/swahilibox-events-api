@@ -1,13 +1,8 @@
 import HttpStatus from 'http-status'
-import db from '../../database/models'
 import userRoutes from './user'
 
 const routes = app => {
   app.use(userRoutes)
-  app.get('/users', async (req, res) => {
-    const users = await db.User.findAll()
-    return res.status(HttpStatus.OK).json({ users })
-  })
 
   app.get('/', (req, res) =>
     res
