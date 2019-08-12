@@ -1,6 +1,7 @@
 import express from 'express'
 import morgan from 'morgan'
 import routes from './routes'
+import errorHandler from '../lib/middlewares/globalErrorHandler'
 
 const app = express()
 
@@ -10,5 +11,6 @@ if (app.get('env') === 'development') {
 }
 
 routes(app)
+app.use(errorHandler)
 
 export default app

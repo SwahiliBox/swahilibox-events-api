@@ -1,11 +1,12 @@
 import uuid from 'uuid/v4'
 import db from '../../database/models'
 import encryptPassword from '../../lib/helpers/encrypt'
+import CustomError from '../../lib/helpers/customError'
 
 class UserService {
-  static async createUser(req, res) {
+  static async createUser(user) {
     {
-      const { firstName, lastName, email, password } = req.body
+      const { firstName, lastName, email, password } = user
       const hashedPassword = encryptPassword.generateHash(password)
       const userData = {
         id: uuid(),
@@ -14,17 +15,12 @@ class UserService {
         email,
         password: hashedPassword,
       }
-      try {
-        const user = await db.User.findOne({ where: { email } })
+      const existingUser = await db.User.findOne({ where: { email } })
 
-        if (user) {
-          return res.status(409).json({ message: 'email already exists' })
-        }
-        await db.User.create(userData)
-        return res.json({ message: 'Signup successful' })
-      } catch (error) {
-        return res.status(500).json({ message: error.message })
+      if (existingUser) {
+        throw new CustomError(409, 'email already exists')
       }
+      return db.User.create(userData)
     }
   }
 }
