@@ -15,7 +15,7 @@ const sequelize = new Sequelize(
   {
     host: envDbConfig.host,
     dialect: envDbConfig.dialect,
-    logging: false,
+    logging: config.env === 'development',
   },
 )
 
