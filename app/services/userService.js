@@ -2,6 +2,8 @@ import uuid from 'uuid/v4'
 import db from '../../database/models'
 import encryptPassword from '../../lib/helpers/encrypt'
 import CustomError from '../../lib/helpers/customError'
+import createToken from '../../lib/helpers/jwtHelper'
+import config from '../../config/config'
 
 class UserService {
   static async createUser(user) {
@@ -22,6 +24,15 @@ class UserService {
       }
       return db.User.create(userData)
     }
+  }
+
+  static login(user) {
+    const { secretKey, jwtExpiration } = config
+    const { id } = user
+    const token = createToken({ id }, secretKey, {
+      expiresIn: jwtExpiration,
+    })
+    return token
   }
 }
 
