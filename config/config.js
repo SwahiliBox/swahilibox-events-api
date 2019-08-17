@@ -15,6 +15,8 @@ const envVarsSchema = joi
     DATABASE_USER: joi.string().required(),
     DATABASE_URL: joi.string().default(null),
     HOST: joi.string().required(),
+    SECRET_KEY: joi.string().required(),
+    JWT_EXPIRATION: joi.string().required(),
   })
   .unknown()
   .required()
@@ -35,6 +37,8 @@ const config = {
   dbPassword: envVars.DATABASE_PASSWORD,
   databaseUrl: envVars.DATABASE_URL,
   host: envVars.HOST,
+  secretKey: envVars.SECRET_KEY,
+  jwtExpiration: envVars.JWT_EXPIRATION,
 }
 
 module.exports = config
