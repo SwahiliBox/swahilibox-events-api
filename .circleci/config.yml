@@ -1,4 +1,6 @@
 version: 2
+orbs:
+  codecov: codecov/codecov@1.0.2
 defaults: &defaults
   machine:
     environment:
@@ -34,6 +36,8 @@ jobs:
           root: tmp
           paths:
             - cc-test-reporter
+      - codecov/upload:
+          file: ""
   app-tests:
     <<: *defaults
     steps:
