@@ -36,8 +36,6 @@ jobs:
           root: tmp
           paths:
             - cc-test-reporter
-      - codecov/upload:
-          file: ""
   app-tests:
     <<: *defaults
     steps:
