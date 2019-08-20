@@ -57,3 +57,4 @@ jobs:
             ./cc-test-reporter before-build
             yarn test
             ./cc-test-reporter after-build --coverage-input-type lcov --exit-code $?
+            yarn codecov
