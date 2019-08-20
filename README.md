@@ -1,6 +1,6 @@
 [![CircleCI](https://circleci.com/gh/SwahiliBox/swahilibox-events-api.svg?style=svg)](https://circleci.com/gh/SwahiliBox/swahilibox-events-api)
 [![Maintainability](https://api.codeclimate.com/v1/badges/02fc20612d73a58fd81c/maintainability)](https://codeclimate.com/github/SwahiliBox/swahilibox-events-api/maintainability)
-[![codecov](https://codecov.io/gh/SwahiliBox/swahilibox-events-api/branch/ch-add-test-coverage/graph/badge.svg)](https://codecov.io/gh/SwahiliBox/swahilibox-events-api)
+[![codecov](https://codecov.io/gh/SwahiliBox/swahilibox-events-api/branch/develop/graph/badge.svg)](https://codecov.io/gh/SwahiliBox/swahilibox-events-api)
 
 # Welcome to swahilibox events api
 

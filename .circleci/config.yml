@@ -24,8 +24,6 @@ defaults: &defaults
           POSTGRES_USER: root
 jobs:
   build:
-    environment:
-      CC_TEST_REPORTER_ID: 61f35672cf2dfc9d3171b614ea08d18f72ce23549d31d1a20dd2a7471a665ec7
     <<: *defaults
     steps:
       - run:
