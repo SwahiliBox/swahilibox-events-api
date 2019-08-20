@@ -1,1 +1,24 @@
-repo_token: 3bfb0b50c49cf35857fa0f1196ba56b00d4cb7c9aab8a1d5b855002f3c3a3bdc
+version: "2"
+exclude_patterns:
+  - "database/"
+plugins:
+  eslint:
+    enabled: true
+    channel: "eslint-5"
+    config:
+      config: "./eslintrc.json"
+  duplication:
+    enabled: true
+    config:
+      languages:
+        js:
+          checks:
+            identical-code:
+              config:
+                threshold: 25
+            similar-code:
+              config:
+                threshold: 50
+            method-lines:
+              config:
+                threshold: 50

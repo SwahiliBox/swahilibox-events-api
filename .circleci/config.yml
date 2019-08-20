@@ -24,6 +24,8 @@ defaults: &defaults
           POSTGRES_USER: root
 jobs:
   build:
+  environment:
+      CC_TEST_REPORTER_ID: 61f35672cf2dfc9d3171b614ea08d18f72ce23549d31d1a20dd2a7471a665ec7
     <<: *defaults
     steps:
       - run:
@@ -51,16 +53,7 @@ jobs:
             - ./node_modules
       - run:
           name: Run tests
-          command: yarn test
-  upload-coverage:
-    <<: *defaults
-    environment:
-      - CC_TEST_REPORTER_ID: 3bfb0b50c49cf35857fa0f1196ba56b00d4cb7c9aab8a1d5b855002f3c3a3bdc
-    steps:
-      - attach_workspace:
-          at: ~/repo/tmp
-      - run:
-          name: Upload coverage results to Code Climate
           command: |
-            ./tmp/cc-test-reporter sum-coverage tmp/codeclimate.*.json -p 2 -o tmp/codeclimate.total.json
-            ./tmp/cc-test-reporter upload-coverage -i tmp/codeclimate.total.json
+            ./cc-test-reporter before-build
+            yarn test
+            ./cc-test-reporter after-build --coverage-input-type lcov --exit-code $?
