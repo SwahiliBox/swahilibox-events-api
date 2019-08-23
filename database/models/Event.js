@@ -9,9 +9,13 @@ module.exports = class Event extends Sequelize.Model {
           unique: true,
           primaryKey: true,
         },
-        name: {
+        title: {
           type: Sequelize.STRING,
-          unique: true,
+          unique: false,
+        },
+        slug: {
+          type: Sequelize.STRING,
+          allowNull: false,
         },
         location: {
           type: Sequelize.STRING,
