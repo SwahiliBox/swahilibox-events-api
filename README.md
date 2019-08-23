@@ -4,14 +4,14 @@
 
 # Welcome to swahilibox events api
 
-  An API that will provide a fucntionality for SwahiliBox  Admins to be able to
-  create and manage events.
-  On the other hand, other users of the system can be able to view and respond to the events.
-  This will aid for better communication between SwahiliBox and the community
-  and hence better planing of activities going forward.
+An API that will provide a fucntionality for SwahiliBox  Admins to be able to
+create and manage events.
+On the other hand, other users of the system can be able to view and respond to the events.
+This will aid for better communication between SwahiliBox and the community and hence better planing of activities going forward.
 
 
 ## Application features
+
 Appart from normal authentication the app will provide the following
 functionality
 
