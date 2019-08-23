@@ -81,6 +81,30 @@ Then run the command below to start the application in development mode
 
 `yarn start:dev`
 
+**Run with Docker**
+
+You should have docker install in your machine. If you have docker set up go
+ahead and spin the server by:
+
+* Build the image
+
+    `docker build -t swahilibox-events-api-docker .`
+
+* Run docker image
+
+    `docker run -it -p 9000:5000 swahilibox-events-api-docker `
+
+    NOTE: `5000` is the port at which the app is running.
+
+* To docker in the background
+
+    `docker run -d -p 9000:5000 swahilibox-events-api-docker`
+
+* Access the API on port `9000`
+
+     `http://localhost:9000/`
+
+
 ### Switch to the master branch for stable/working features
 
 `git checkout master`
