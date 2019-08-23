@@ -1,12 +1,12 @@
-version: '2'
+version: "2"
 exclude_patterns:
-  - 'database/'
+  - "database/"
 plugins:
   eslint:
     enabled: true
-    channel: 'eslint-5'
+    channel: "eslint-5"
     config:
-      config: './eslintrc.json'
+      config: "./eslintrc.json"
   duplication:
     enabled: true
     config:
@@ -22,4 +22,3 @@ plugins:
             method-lines:
               config:
                 threshold: 50
-
