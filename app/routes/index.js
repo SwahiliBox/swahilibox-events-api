@@ -1,5 +1,6 @@
 import HttpStatus from 'http-status'
 import userRoutes from './user'
+import errorHandler from '../../lib/middlewares/globalErrorHandler'
 
 const routes = app => {
   app.use(userRoutes)
@@ -15,6 +16,10 @@ const routes = app => {
       .status(HttpStatus.NOT_FOUND)
       .json({ message: 'path not found, please check and try again' }),
   )
+
+  // Error handler middeware
+  app.use(errorHandler)
+
   return app
 }
 
