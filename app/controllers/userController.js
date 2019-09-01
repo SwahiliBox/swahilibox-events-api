@@ -1,13 +1,15 @@
+import httpStatus from 'http-status'
 import UserService from '../services/userService'
+import responseWrapper from '../../lib/helpers/response-wrapper'
 
 class UserController {
   static async signup(req, res, next) {
-    try {
-      await UserService.createUser(req.body)
-      return res.status(201).json({ message: 'signup successful' })
-    } catch (error) {
-      return next(error)
-    }
+    await UserService.createUser(req.body)
+      .then(user => {
+        return { data: user }
+      })
+      .then(responseWrapper.respond({ res, status: httpStatus.CREATED }))
+      .catch(next)
   }
 
   static login(req, res, next) {
