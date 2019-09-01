@@ -11,6 +11,15 @@ class UserController {
       .then(responseWrapper.respond({ res, status: httpStatus.CREATED }))
       .catch(next)
   }
+
+  static login(req, res, next) {
+    try {
+      const token = UserService.login(req.user)
+      return res.status(200).json({ message: 'login successful', token })
+    } catch (error) {
+      return next(error)
+    }
+  }
 }
 
 export default UserController

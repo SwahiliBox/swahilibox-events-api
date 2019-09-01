@@ -1,19 +1,18 @@
 version: 2
-machine:
-  environment:
-    # Add the Postgres 9.6 binaries to the path.
-    PATH: /usr/lib/postgresql/9.6/bin/:$PATH
+orbs:
+  codecov: codecov/codecov@1.0.2
+defaults: &defaults
+  machine:
+    environment:
+      # Add the Postgres 9.6 binaries to the path.
+      PATH: /usr/lib/postgresql/9.6/bin/:$PATH
+    pre:
+      # Start Postgres 9.6.
+      - sudo service postgresql start 9.6
 
-  pre:
-    # Start Postgres 9.6.
-    - sudo service postgresql start 9.6
-
-    # Create a new test database.
-    - sudo -u postgres psql -p 5432 -c "create database events_test_db;"
-
-jobs:
-  build:
-    docker: 
+      # Create a new test database.
+      - sudo -u postgres psql -p 5432 -c "create database events_test_db;"
+    docker:
       - image: circleci/node:11.8.0
         environment:
           DATABASE: events_test_db
@@ -23,17 +22,37 @@ jobs:
         environment:
           POSTGRES_DB: events_test_db
           POSTGRES_USER: root
+jobs:
+  build:
+    <<: *defaults
     steps:
-      - checkout 
+      - run:
+          name: Download cc-test-reporter
+          command: |
+            mkdir -p tmp/
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./tmp/cc-test-reporter
+            chmod +x ./tmp/cc-test-reporter
+      - persist_to_workspace:
+          root: tmp
+          paths:
+            - cc-test-reporter
+  app-tests:
+    <<: *defaults
+    steps:
+      - checkout
       - run:
           name: Install dependencies
           command: yarn
       - restore_cache: # special step to restore the dependency cache
           key: dependency-cache-{{checksum "package.json"}}
-      - save_cache: # saving cache for faster restoration 
+      - save_cache: # saving cache for faster restoration
           key: dependency-cache-{{checksum "package.json"}}
           paths:
             - ./node_modules
       - run:
           name: Run tests
-          command: yarn test
+          command: |
+            ./cc-test-reporter before-build
+            yarn test
+            ./cc-test-reporter after-build --coverage-input-type lcov --exit-code $?
+            yarn codecov

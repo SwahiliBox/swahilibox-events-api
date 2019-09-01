@@ -3,6 +3,8 @@ import uuid from 'uuid/v4'
 import db from '../../database/models'
 import encryptPassword from '../../lib/helpers/encrypt'
 import CustomError from '../../lib/helpers/customError'
+import createToken from '../../lib/helpers/jwtHelper'
+import config from '../../config/config'
 
 const ensureUserDoesNotExist = async user => {
   const foundUser = await db.User.findOne({ where: { email: user.email } })
@@ -34,6 +36,15 @@ class UserService {
       .catch(err => {
         throw err
       })
+  }
+
+  static login(user) {
+    const { secretKey, jwtExpiration } = config
+    const { id } = user
+    const token = createToken({ id }, secretKey, {
+      expiresIn: jwtExpiration,
+    })
+    return token
   }
 }
 
