@@ -73,15 +73,21 @@ Create a `.env` file.Copy the contents of `.env.sample` file and paste them in y
 
 Install dependencies
 
-`yarn install`
+```sh
+yarn install
+```
 
 Run database migrations to create the tables
 
-`yarn db:migrate`
+```sh
+yarn db:migrate
+```
 
 Then run the command below to start the application in development mode
 
-`yarn start:dev`
+```sh
+yarn dev
+```
 
 **Run with Docker**
 
@@ -90,26 +96,35 @@ ahead and spin the server by:
 
 * Build the image
 
-    `docker build -t swahilibox-events-api-docker .`
+    ```sh
+    docker build -t swahilibox-events-api-docker .
+    ```
 
 * Run docker image
 
-    `docker run -it -p 9000:5000 swahilibox-events-api-docker `
+    ```sh
+    docker run -it -p 9000:5000 swahilibox-events-api-docker
+    ```
 
     NOTE: `5000` is the port at which the app is running.
 
 * To docker in the background
 
-    `docker run -d -p 9000:5000 swahilibox-events-api-docker`
+    ```sh
+    docker run -d -p 9000:5000 swahilibox-events-api-docker
+    ```
 
 * Access the API on port `9000`
 
-     `http://localhost:9000/`
-
+     ```sh
+     http://localhost:9000/
+     ```
 
 ### Switch to the master branch for stable/working features
 
-`git checkout master`
+```sh
+git checkout master
+```
 
 The application is under constant development. The `develop` branch has the latest changes added into the app
 
@@ -117,20 +132,26 @@ The application is under constant development. The `develop` branch has the late
 
  1. clone the repo
 
-       git clone https://github.com/SwahiliBox/swahilibox-events-api
+   ```sh
+    git clone https://github.com/SwahiliBox/swahilibox-events-api
+   ```
 
  2. Set up the app locally (Refer *Getting started with the application* above)
  3. Create a branch from develop
 
-        git checkout -b feature/<name-of-the-feature> (e.g feature/implement-user-login)
+   ```sh
+   git checkout -b feature/<name-of-the-feature> (e.g feature/implement-user-login)
+   ```
 
  4. Work on the task and push your changes to github repo.
 
-        git add .
+   ```sh
+    git add .
 
-        git commit -m "Implement user login"
+    yarn commit
 
-        git push origin feature/<name-of-the-feature> (e.g feature/implement-user-login)
+    git push origin feature/<name-of-the-feature> (e.g feature/implement-user-login)
+    ```
 
  5. Open a Pull Request to develop and a provide a very detail description of your PR.
 
