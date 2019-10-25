@@ -146,19 +146,20 @@ The application is under constant development. The `develop` branch has the late
  4. Work on the task and push your changes to github repo.
 
    ```sh
-    git add .
+   git add .
 
-    yarn commit
+   yarn commit
 
-    git push origin feature/<name-of-the-feature> (e.g feature/implement-user-login)
-    ```
+
+
+   git push origin feature/<name-of-the-feature> (e.g feature/implement-user-login)
+   ```
 
  5. Open a Pull Request to develop and a provide a very detail description of your PR.
 
  For more info refer [Getting started with Git and Github](https://towardsdatascience.com/getting-started-with-git-and-github-6fcd0f2d4ac6).
 
  ### Other Ways to contribute
+
   1. Review open PRs
   2. Open an [issue](https://help.github.com/en/articles/about-issues)
-
-
