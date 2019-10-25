@@ -6,8 +6,8 @@
   "author": "swahilibox",
   "license": "MIT",
   "scripts": {
-    "start": "babel-node index.js",
-    "dev": "yarn db:migrate && nodemon --exec babel-node index.js",
+    "start": "babel-node src/server.js",
+    "start:dev": "nodemon --exec babel-node src/server.js",
     "lint": "eslint --fix . && echo 'Lint complete.'",
     "commit": "git-cz",
     "test": "NODE_ENV=test jest --coverage --no-cache  --detectOpenHandles --runInBand --forceExit",
@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@babel/node": "^7.6.3",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-transform-regenerator": "^7.4.5",
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.5.5",
@@ -67,6 +68,11 @@
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run lint && yarn run test"
     }
   }
 }
