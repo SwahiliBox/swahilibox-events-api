@@ -4,9 +4,7 @@
     "es6": true,
     "node": true
   },
-  "extends": [
-    "airbnb-base", "prettier"
-  ],
+  "extends": ["eslint:recommended", "airbnb-base", "prettier"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -23,14 +21,12 @@
       {
         "singleQuote": true,
         "trailingComma": "all",
-        "bracketSpacing": true
+        "bracketSpacing": true,
+        "semi": false
       }
     ],
-    "indent": [
-      "error", 2
-    ],
-    "quotes": [
-      "error", "single"
-    ]
+    "indent": ["error", 2],
+    "quotes": ["error", "single"],
+    "semi": ["error", "never"]
   }
 }

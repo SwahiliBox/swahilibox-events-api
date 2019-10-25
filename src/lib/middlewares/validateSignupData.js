@@ -16,6 +16,7 @@ const signUpData = {
   email: {
     type: String,
     required: true,
+    // eslint-disable-next-line no-useless-escape
     match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
     message: 'please provide a valid email',
   },
