@@ -21,12 +21,12 @@
       {
         "singleQuote": true,
         "trailingComma": "all",
-        "bracketSpacing": true,
-        "semi": false
+        "bracketSpacing": true
       }
     ],
     "indent": ["error", 2],
     "quotes": ["error", "single"],
-    "semi": ["error", "never"]
+    "semi": ["error"],
+    "class-methods-use-this": "off"
   }
 }

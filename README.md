@@ -69,13 +69,19 @@ Install PostgreSQL and create a database to be used by the application
   - visit the official getting started [page](https://www.postgresql.org/docs/10/tutorial-start.html)
   - Here is also a [tutorial](https://www.youtube.com/watch?v=e1MwsT5FJRQ) to do so on windows
 
-Create a `.env` file.Copy the contents of `.env.sample` file and paste them in your `.env` file. Replace the value of `DATABASE` with the name of the database you just created above. Same with `DATABASE_PASSWORD` and `DATABASE_USER`.
+Create a `.env-cmdrc` file. Copy the contents of `.env-cmdrc.sample` file and paste them in your `.envcmdrc` file. Replace the value of `DATABASE` with the name of the database you just created above. Same with `DATABASE_PASSWORD` and `DATABASE_USER`. checkout how to use `env-cmd` [here](https://www.npmjs.com/package/env-cmd).
 
 Install dependencies
 
 ```sh
 yarn install
 ```
+
+Note:
+you will need to first export your env variables before running any of the following commands.
+To do so, run `npx env-cmd -e environment` environment here could be any of the keys in your '.env-cmdrc' file. Sample command `npx
+env-cmd -e development`.
+For example to run migrations, use `npx env-cmd -e development yarn db:migrate`
 
 Run database migrations to create the tables
 
@@ -86,7 +92,7 @@ yarn db:migrate
 Then run the command below to start the application in development mode
 
 ```sh
-yarn dev
+yarn start:dev
 ```
 
 **Run with Docker**

@@ -1,4 +1,4 @@
-import Schema from 'validate'
+import Schema from 'validate';
 
 const signUpData = {
   firstName: {
@@ -25,15 +25,15 @@ const signUpData = {
     required: true,
     length: { min: 6 },
   },
-}
+};
 
 const validateSignupData = (req, res, next) => {
-  const userData = new Schema(signUpData)
-  const errors = userData.validate(req.body)
+  const userData = new Schema(signUpData);
+  const errors = userData.validate(req.body);
   if (errors.length) {
-    return res.status(400).json({ message: errors[0].message })
+    return res.status(400).json({ message: errors[0].message });
   }
-  return next()
-}
+  return next();
+};
 
-export default validateSignupData
+export default validateSignupData;
