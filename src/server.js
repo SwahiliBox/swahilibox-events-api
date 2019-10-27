@@ -1,5 +1,5 @@
 import logger from 'fancy-log';
-import config from './config';
+import { getConfig } from './config';
 import app from './app';
 
-app.start(config, logger);
+app.start(getConfig(), logger);

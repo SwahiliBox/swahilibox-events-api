@@ -8,7 +8,6 @@ const envVarsSchema = joi
       .required(),
     PORT: joi.number().default(8080),
     DATABASE: joi.string().required(),
-    TEST_DB: joi.string().default('events_test_db'),
     DATABASE_DIALECT: joi.string().default('postgres'),
     DATABASE_PASSWORD: joi.string().default(null),
     DATABASE_USER: joi.string().required(),
@@ -20,24 +19,26 @@ const envVarsSchema = joi
   .unknown()
   .required();
 
-const { error, value: envVars } = joi.validate(process.env, envVarsSchema);
+export const getConfig = () => {
+  const { error, value: envVars } = joi.validate(process.env, envVarsSchema);
 
-if (error) {
-  throw new Error(`Config validation error: ${error.message}`);
-}
+  if (error) {
+    throw new Error(`Config validation error: ${error.message}`);
+  }
 
-const config = {
-  env: envVars.NODE_ENV || 'development',
-  port: envVars.PORT,
-  databaseName: envVars.DATABASE,
-  testDbName: envVars.TEST_DB,
-  dbUsername: envVars.DATABASE_USER,
-  databaseDialect: envVars.DATABASE_DIALECT,
-  dbPassword: envVars.DATABASE_PASSWORD,
-  databaseUrl: envVars.DATABASE_URL,
-  host: envVars.HOST,
-  secretKey: envVars.SECRET_KEY,
-  jwtExpiration: envVars.JWT_EXPIRATION,
+  const config = {
+    env: envVars.NODE_ENV || 'development',
+    port: envVars.PORT,
+    db: {
+      name: envVars.DATABASE,
+      username: envVars.DATABASE_USER,
+      password: envVars.DATABASE_PASSWORD,
+      databaseUrl: envVars.DATABASE_URL,
+      host: envVars.HOST,
+    },
+    secretKey: envVars.SECRET_KEY,
+    jwtExpiration: envVars.JWT_EXPIRATION,
+  };
+
+  return config;
 };
-
-export default config;
