@@ -20,13 +20,14 @@
       "error",
       {
         "singleQuote": true,
-        "trailingComma": "all",
-        "bracketSpacing": true
+        "trailingComma": "all"
       }
     ],
     "indent": ["error", 2],
     "quotes": ["error", "single"],
     "semi": ["error"],
-    "class-methods-use-this": "off"
+    "class-methods-use-this": "off",
+    "import/prefer-default-export": false,
+    "object-curly-spacing": ["error", "always"]
   }
 }
