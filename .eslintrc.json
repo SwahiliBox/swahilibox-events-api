@@ -20,7 +20,8 @@
       "error",
       {
         "singleQuote": true,
-        "trailingComma": "all"
+        "trailingComma": "all",
+        "bracketSpacing": true
       }
     ],
     "indent": ["error", 2],
