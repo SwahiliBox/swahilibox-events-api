@@ -14,7 +14,7 @@ machine:
 jobs:
   build:
     docker: 
-      - image: circleci/node:11.8.0
+      - image: circleci/node:12.9.1
         environment:
           DATABASE: sb-events-test
           DATABASE_USER: root
