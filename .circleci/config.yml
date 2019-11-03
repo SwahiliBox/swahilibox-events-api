@@ -19,9 +19,11 @@ jobs:
           DATABASE: sb-events-test
           DATABASE_USER: root
           HOST: localhost
+          SECRET_KEY: somekey
+          JWT_EXPIRATION: 1h
       - image: circleci/postgres:9.6
         environment:
-          POSTGRES_DB: books_db_test
+          POSTGRES_DB: sb-events-test
           POSTGRES_USER: root
     steps:
       - checkout 
