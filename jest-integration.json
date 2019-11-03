@@ -1,0 +1,4 @@
+{
+  "rootDir": "./src",
+  "testRegex": "integration.spec.js$"
+}
