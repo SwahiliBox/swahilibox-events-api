@@ -1,58 +1,41 @@
 version: 2
-orbs:
-  codecov: codecov/codecov@1.0.2
-defaults: &defaults
-  machine:
-    environment:
-      # Add the Postgres 9.6 binaries to the path.
-      PATH: /usr/lib/postgresql/9.6/bin/:$PATH
-    pre:
-      # Start Postgres 9.6.
-      - sudo service postgresql start 9.6
+machine:
+  environment:
+    # Add the Postgres 9.6 binaries to the path.
+    PATH: /usr/lib/postgresql/9.6/bin/:$PATH
 
-      # Create a new test database.
-      - sudo -u postgres psql -p 5432 -c "create database events_test_db;"
-    docker:
-      - image: circleci/node:11.8.0
-        environment:
-          DATABASE: events_test_db
-          DATABASE_USER: root
-          HOST: localhost
-      - image: circleci/postgres:9.6
-        environment:
-          POSTGRES_DB: events_test_db
-          POSTGRES_USER: root
+  pre:
+    # Start Postgres 9.6.
+    - sudo service postgresql start 9.6
+
+    # Create a new test database.
+    - sudo -u postgres psql -p 5432 -c "create database sb-events-test;"
+
 jobs:
   build:
-    <<: *defaults
+    docker: 
+      - image: circleci/node:12.9.1
+        environment:
+          DATABASE: sb-events-test
+          DATABASE_USER: root
+          HOST: localhost
+          SECRET_KEY: somekey
+          JWT_EXPIRATION: 1h
+      - image: circleci/postgres:9.6
+        environment:
+          POSTGRES_DB: sb-events-test
+          POSTGRES_USER: root
     steps:
-      - run:
-          name: Download cc-test-reporter
-          command: |
-            mkdir -p tmp/
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./tmp/cc-test-reporter
-            chmod +x ./tmp/cc-test-reporter
-      - persist_to_workspace:
-          root: tmp
-          paths:
-            - cc-test-reporter
-  app-tests:
-    <<: *defaults
-    steps:
-      - checkout
+      - checkout 
       - run:
           name: Install dependencies
-          command: yarn
+          command: yarn install
       - restore_cache: # special step to restore the dependency cache
           key: dependency-cache-{{checksum "package.json"}}
-      - save_cache: # saving cache for faster restoration
+      - save_cache: # saving cache for faster restoration 
           key: dependency-cache-{{checksum "package.json"}}
           paths:
             - ./node_modules
       - run:
           name: Run tests
-          command: |
-            ./cc-test-reporter before-build
-            yarn test
-            ./cc-test-reporter after-build --coverage-input-type lcov --exit-code $?
-            yarn codecov
+          command: yarn test

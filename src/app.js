@@ -1,6 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import errorHandler from './lib/middlewares/globalErrorHandler';
+import { getAccountsRouter } from './domains/user/accounts.routes';
 
 class App {
   routes = [];
@@ -27,9 +28,8 @@ class App {
   start(config, logger) {
     const app = this.createExpressApp();
 
-    // call the addApiRoute method here to add any routes created
-    // this.addApiRoute(userRoute)
-    // this.addApiRoute(eventsRoute)
+    this.addApiRoute(getAccountsRouter());
+
     if (this.routes.length !== 0) {
       this.routes.forEach(route => {
         app.use(route);

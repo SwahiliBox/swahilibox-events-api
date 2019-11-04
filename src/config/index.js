@@ -4,7 +4,7 @@ const envVarsSchema = joi
   .object({
     NODE_ENV: joi
       .string()
-      .allow(['development', 'production', 'test', 'staging'])
+      .allow('development', 'production', 'test', 'staging')
       .required(),
     PORT: joi.number().default(8080),
     DATABASE: joi.string().required(),
@@ -20,7 +20,7 @@ const envVarsSchema = joi
   .required();
 
 export const getConfig = () => {
-  const { error, value: envVars } = joi.validate(process.env, envVarsSchema);
+  const { error, value: envVars } = envVarsSchema.validate(process.env);
 
   if (error) {
     throw new Error(`Config validation error: ${error.message}`);
