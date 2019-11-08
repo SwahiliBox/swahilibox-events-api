@@ -10,6 +10,13 @@ class AccountResource {
     );
     return created[0];
   }
+
+  async getUser(lookupKey, lookup) {
+    const user = await knexInstance(ACCOUNTS_TABLE)
+      .where(lookupKey, lookup)
+      .first();
+    return user;
+  }
 }
 
 export const accountResource = new AccountResource();

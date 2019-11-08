@@ -14,9 +14,6 @@ class App {
       app.use(morgan('dev'));
     }
 
-    // errorHandler should be added as the last middleware to the app
-    app.use(errorHandler);
-
     return app;
   }
 
@@ -35,6 +32,9 @@ class App {
         app.use(route);
       });
     }
+
+    // errorHandler should be added as the last middleware to the app
+    app.use(errorHandler);
 
     // create app server and start it
     app.listen(config.port, () => {

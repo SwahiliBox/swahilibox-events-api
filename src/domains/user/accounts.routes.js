@@ -8,8 +8,8 @@ export function getAccountsRouter() {
   accountsRouter.post(
     '/signup',
     protectedAsyncRequestHandler(async (req, res) => {
-      await accountService.create(req.body);
-      res.status(201).json({ message: 'account created' });
+      const user = await accountService.create(req.body);
+      res.status(201).json({ message: 'account created', token: user.token });
     }),
   );
 

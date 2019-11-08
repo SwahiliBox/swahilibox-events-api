@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "babel-node src/server.js",
-    "start:dev": "nodemon --exec babel-node src/server.js",
+    "start:dev": "env-cmd -e development nodemon --exec babel-node src/server.js",
     "db:migrate:make": "env-cmd -e development  babel-node $(npm bin)/knex migrate:make --knexfile ./src/database/knexfile.js",
     "db:migrate": "env-cmd -e development  babel-node $(npm bin)/knex migrate:latest --knexfile ./src/database/knexfile.js",
     "db:migrate:rollback": "env-cmd -e development  babel-node $(npm bin)/knex migrate:rollback --knexfile ./src/database/knexfile.js",
