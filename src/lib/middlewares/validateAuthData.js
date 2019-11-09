@@ -1,18 +1,6 @@
 import Schema from 'validate';
 
-const signUpData = {
-  firstName: {
-    type: String,
-    required: true,
-    length: { min: 3, max: 55 },
-    message: 'please provide a valid first name',
-  },
-  lastName: {
-    type: String,
-    required: true,
-    length: { min: 3, max: 55 },
-    message: 'please provide a valid last name',
-  },
+const authData = {
   email: {
     type: String,
     required: true,
@@ -27,8 +15,8 @@ const signUpData = {
   },
 };
 
-const validateSignupData = (req, res, next) => {
-  const userData = new Schema(signUpData);
+const validateAuthData = (req, res, next) => {
+  const userData = new Schema(authData);
   const errors = userData.validate(req.body);
   if (errors.length) {
     return res.status(400).json({ message: errors[0].message });
@@ -36,4 +24,4 @@ const validateSignupData = (req, res, next) => {
   return next();
 };
 
-export default validateSignupData;
+export default validateAuthData;

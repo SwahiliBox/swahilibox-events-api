@@ -29,6 +29,12 @@ class AccountService {
 
     return registeredUser;
   }
+
+  login(user) {
+    const { id } = user;
+    const token = createToken({ id }, config.secretKey);
+    return token;
+  }
 }
 
 export const accountService = new AccountService();
