@@ -13,8 +13,9 @@
     "db:migrate:rollback": "env-cmd -e development  babel-node $(npm bin)/knex migrate:rollback --knexfile ./src/database/knexfile.js",
     "lint": "eslint --fix . && echo 'Lint complete.'",
     "commit": "git-cz",
-    "test": "env-cmd -e test jest --config --coverage --no-cache  --detectOpenHandles --runInBand --forceExit",
+    "test": "jest --coverage --no-cache  --detectOpenHandles --runInBand --forceExit",
     "test:integration": "env-cmd -e test jest --config ./jest-integration.json --coverage --no-cache  --detectOpenHandles --runInBand --forceExit",
+    "test:unit": "env-cmd -e test jest --config ./jest-unit.json",
     "codecov": "codecov"
   },
   "devDependencies": {
@@ -73,7 +74,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn run lint && yarn run test"
+      "pre-commit": "yarn run lint && yarn run test:unit"
     }
   }
 }
