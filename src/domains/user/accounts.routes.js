@@ -13,7 +13,7 @@ export function getAccountsRouter() {
     validateAuthData,
     protectedAsyncRequestHandler(async (req, res) => {
       const user = await accountService.create(req.body);
-      res.status(201).json({ message: 'account created', token: user.token });
+      res.status(201).json({ message: 'Account created', token: user.token });
     }),
   );
 

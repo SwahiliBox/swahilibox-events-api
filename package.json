@@ -38,8 +38,7 @@
     "mock-req-res": "^1.1.2",
     "nodemon": "^1.19.4",
     "prettier": "^1.18.2",
-    "sinon": "^7.5.0",
-    "supertest": "^4.0.2"
+    "sinon": "^7.5.0"
   },
   "dependencies": {
     "@babel/node": "^7.6.3",
@@ -64,7 +63,8 @@
     "pg": "^7.12.1",
     "pg-hstore": "^2.3.3",
     "uuid": "^3.3.3",
-    "validate": "^5.1.0"
+    "validate": "^5.1.0",
+    "supertest": "^4.0.2"
   },
   "config": {
     "commitizen": {
