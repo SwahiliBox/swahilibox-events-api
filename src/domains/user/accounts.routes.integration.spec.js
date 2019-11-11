@@ -18,11 +18,9 @@ describeDbTestSuite('accountsRouter', () => {
         .post('/signup')
         .set('Content-type', 'application/json')
         .send(createAccountBody);
-      const { message, token } = response.body;
-      expect(response.body).toEqual({
-        message,
-        token,
-      });
+      expect(response.body.message).toEqual('Account created');
+      expect(response.body).toHaveProperty('token');
+      expect(response.body).toHaveProperty('message');
       expect(response.status).toEqual(201);
     });
 
@@ -35,10 +33,10 @@ describeDbTestSuite('accountsRouter', () => {
         .post('/signup')
         .set('Content-type', 'application/json')
         .send(createAccountBody);
-      const { message } = response.body;
       expect(response.body).toEqual({
-        message,
+        message: 'please provide a valid email',
       });
+      expect(response.body).toHaveProperty('message');
       expect(response.status).toEqual(400);
     });
 
@@ -51,10 +49,10 @@ describeDbTestSuite('accountsRouter', () => {
         .post('/signup')
         .set('Content-type', 'application/json')
         .send(createAccountBody);
-      const { message } = response.body;
       expect(response.body).toEqual({
-        message,
+        message: 'password is required.',
       });
+      expect(response.body).toHaveProperty('message');
       expect(response.status).toEqual(400);
     });
 
@@ -68,10 +66,27 @@ describeDbTestSuite('accountsRouter', () => {
         .post('/signup')
         .set('Content-type', 'application/json')
         .send(createAccountBody);
-      const { message } = response.body;
       expect(response.body).toEqual({
-        message,
+        message: 'please provide a valid email',
       });
+      expect(response.body).toHaveProperty('message');
+      expect(response.status).toEqual(400);
+    });
+
+    test('it should not create an account with empty string email', async () => {
+      const createAccountBody = {
+        email: ' ',
+        password: '0PasSwoRd12',
+      };
+
+      const response = await request(app)
+        .post('/signup')
+        .set('Content-type', 'application/json')
+        .send(createAccountBody);
+      expect(response.body).toEqual({
+        message: 'please provide a valid email',
+      });
+      expect(response.body).toHaveProperty('message');
       expect(response.status).toEqual(400);
     });
 
@@ -85,27 +100,27 @@ describeDbTestSuite('accountsRouter', () => {
         .post('/signup')
         .set('Content-type', 'application/json')
         .send(createAccountBody);
-      const { message } = response.body;
       expect(response.body).toEqual({
-        message,
+        message: 'password must have a minimum length of 6.',
       });
+      expect(response.body).toHaveProperty('message');
       expect(response.status).toEqual(400);
     });
 
-    test('It should return invalid when login with wrong credential', async () => {
-      const credentials = {
-        email: 'wrong@example.com',
-        password: 'wrongpass',
+    test('it should not create an account with empty password', async () => {
+      const createAccountBody = {
+        email: 'email@example.com',
+        password: ' ',
       };
 
       const response = await request(app)
-        .post('/login')
+        .post('/signup')
         .set('Content-type', 'application/json')
-        .send(credentials);
-      const { message } = response.body;
+        .send(createAccountBody);
       expect(response.body).toEqual({
-        message,
+        message: 'password must have a minimum length of 6.',
       });
+      expect(response.body).toHaveProperty('message');
       expect(response.status).toEqual(400);
     });
 
@@ -128,11 +143,9 @@ describeDbTestSuite('accountsRouter', () => {
         .post('/login')
         .set('Content-type', 'application/json')
         .send(credentials);
-      const { message, token } = response.body;
-      expect(response.body).toEqual({
-        message,
-        token,
-      });
+      expect(response.body.message).toEqual('Logged In successfully');
+      expect(response.body).toHaveProperty('message');
+      expect(response.body).toHaveProperty('token');
       expect(response.status).toEqual(200);
     });
   });
