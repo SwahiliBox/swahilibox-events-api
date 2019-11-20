@@ -11,9 +11,9 @@ class AccountResource {
     return created[0];
   }
 
-  async getUser(lookupKey, lookup) {
+  async getUser(field, value) {
     const user = await knexInstance(ACCOUNTS_TABLE)
-      .where(lookupKey, lookup)
+      .where(field, value)
       .first();
     return user;
   }

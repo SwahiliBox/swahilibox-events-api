@@ -6,24 +6,14 @@ import { getAccountsRouter } from './domains/user/accounts.routes';
 class App {
   routes = [];
 
-  createExpressApp() {
-    const app = express();
-    app.use(express.json());
-
-    if (app.get('env') === 'development') {
-      app.use(morgan('dev'));
-    }
-
-    return app;
-  }
-
   addApiRoute(route) {
     this.routes.push(route);
     return this;
   }
 
-  start(config, logger) {
-    const app = this.createExpressApp();
+  createExpressApp() {
+    const app = express();
+    app.use(express.json());
 
     this.addApiRoute(getAccountsRouter());
 
@@ -32,6 +22,16 @@ class App {
         app.use(route);
       });
     }
+
+    if (app.get('env') === 'development') {
+      app.use(morgan('dev'));
+    }
+
+    return app;
+  }
+
+  start(config, logger) {
+    const app = this.createExpressApp();
 
     // errorHandler should be added as the last middleware to the app
     app.use(errorHandler);
