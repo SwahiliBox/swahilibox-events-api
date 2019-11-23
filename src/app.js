@@ -6,9 +6,22 @@ import { getAccountsRouter } from './domains/user/accounts.routes';
 class App {
   routes = [];
 
+  addApiRoute(route) {
+    this.routes.push(route);
+    return this;
+  }
+
   createExpressApp() {
     const app = express();
     app.use(express.json());
+
+    this.addApiRoute(getAccountsRouter());
+
+    if (this.routes.length !== 0) {
+      this.routes.forEach(route => {
+        app.use(route);
+      });
+    }
 
     if (app.get('env') === 'development') {
       app.use(morgan('dev'));
@@ -20,21 +33,8 @@ class App {
     return app;
   }
 
-  addApiRoute(route) {
-    this.routes.push(route);
-    return this;
-  }
-
   start(config, logger) {
     const app = this.createExpressApp();
-
-    this.addApiRoute(getAccountsRouter());
-
-    if (this.routes.length !== 0) {
-      this.routes.forEach(route => {
-        app.use(route);
-      });
-    }
 
     // create app server and start it
     app.listen(config.port, () => {

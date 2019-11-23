@@ -10,6 +10,13 @@ class AccountResource {
     );
     return created[0];
   }
+
+  async getUser(field, value) {
+    const user = await knexInstance(ACCOUNTS_TABLE)
+      .where(field, value)
+      .first();
+    return user;
+  }
 }
 
 export const accountResource = new AccountResource();

@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "babel-node src/server.js",
-    "start:dev": "nodemon --exec babel-node src/server.js",
+    "start:dev": "env-cmd -e development nodemon --exec babel-node src/server.js",
     "db:migrate:make": "env-cmd -e development  babel-node $(npm bin)/knex migrate:make --knexfile ./src/database/knexfile.js",
     "db:migrate": "env-cmd -e development  babel-node $(npm bin)/knex migrate:latest --knexfile ./src/database/knexfile.js",
     "db:migrate:rollback": "env-cmd -e development  babel-node $(npm bin)/knex migrate:rollback --knexfile ./src/database/knexfile.js",
@@ -15,6 +15,7 @@
     "commit": "git-cz",
     "test": "jest --coverage --no-cache  --detectOpenHandles --runInBand --forceExit",
     "test:integration": "env-cmd -e test jest --config ./jest-integration.json --coverage --no-cache  --detectOpenHandles --runInBand --forceExit",
+    "test:unit": "env-cmd -e test jest --config ./jest-unit.json",
     "codecov": "codecov"
   },
   "devDependencies": {
@@ -73,7 +74,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn run lint && yarn run test"
+      "pre-commit": "yarn run lint && yarn run test:unit"
     }
   }
 }

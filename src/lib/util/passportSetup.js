@@ -1,10 +1,13 @@
 import passport from 'passport';
 import EncryptData from '../helpers/encrypt';
 import CustomError from '../helpers/customError';
+import { getConfig } from '../../config';
+import { accountResource } from '../../domains/user/accounts.resource';
 
 const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
 const { Strategy: LocalStrategy } = require('passport-local');
-const { secretKey, jwtExpiration } = require('../../config');
+
+const config = getConfig();
 
 passport.use(
   new LocalStrategy(
@@ -14,17 +17,14 @@ passport.use(
     },
     async (email, password, done) => {
       try {
-        const user = { email, password }; // declare a dummy user variable so its refferences won't break
-        // when new database setup is done then the user can be retrieved
-        // const user = await db.User.findOne({ where: { email } })
-
-        if (!user) throw new CustomError(400, 'Wrong email or password');
+        const user = await accountResource.getUser('email', email);
+        if (!user) throw new CustomError(400, 'Invalid credentials');
         const passwordMatch = await EncryptData.compareHash(
           password,
           user.password,
         );
         if (!passwordMatch) {
-          throw new CustomError(400, 'Wrong email or password');
+          throw new CustomError(400, 'Invalid credentials');
         }
         return done(null, user);
       } catch (error) {
@@ -37,8 +37,8 @@ passport.use(
   new JwtStrategy(
     {
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: secretKey,
-      jsonWebTokenOptions: { maxAge: jwtExpiration },
+      secretOrKey: config.secretKey,
+      jsonWebTokenOptions: { maxAge: config.jwtExpiration },
     },
     (jwtPayload, done) => done(null, jwtPayload),
   ),
