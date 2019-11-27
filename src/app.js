@@ -1,7 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import errorHandler from './lib/middlewares/globalErrorHandler';
-import { getAccountsRouter } from './domains/user/accounts.routes';
+import { getAccountsRouter } from './domains/accounts/accounts.routes';
 
 class App {
   routes = [];
