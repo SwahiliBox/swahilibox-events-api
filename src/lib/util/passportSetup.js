@@ -2,7 +2,7 @@ import passport from 'passport';
 import EncryptData from '../helpers/encrypt';
 import CustomError from '../helpers/customError';
 import { getConfig } from '../../config';
-import { accountResource } from '../../domains/user/accounts.resource';
+import { accountResource } from '../../domains/accounts/accounts.resource';
 
 const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
 const { Strategy: LocalStrategy } = require('passport-local');
