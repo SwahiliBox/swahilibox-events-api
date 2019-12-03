@@ -1,6 +1,6 @@
 import EncryptData from '../../lib/helpers/encrypt';
 import createToken from '../../lib/helpers/jwtHelper';
-import CustomError from '../../lib/helpers/customError';
+import CustomError from '../../lib/util/customError';
 import { getConfig } from '../../config';
 
 import { accountResource } from './accounts.resource';
