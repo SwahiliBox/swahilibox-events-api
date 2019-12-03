@@ -2,6 +2,7 @@ import express from 'express';
 import morgan from 'morgan';
 import errorHandler from './lib/middlewares/globalErrorHandler';
 import { getAccountsRouter } from './domains/accounts/accounts.routes';
+import { getSkillsRouter } from './domains/skills/skills.routes';
 
 class App {
   routes = [];
@@ -16,6 +17,7 @@ class App {
     app.use(express.json());
 
     this.addApiRoute(getAccountsRouter());
+    this.addApiRoute(getSkillsRouter());
 
     if (this.routes.length !== 0) {
       this.routes.forEach(route => {
