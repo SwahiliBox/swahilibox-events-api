@@ -1,6 +1,6 @@
 import passport from 'passport';
 import EncryptData from '../helpers/encrypt';
-import CustomError from '../helpers/customError';
+import CustomError from './customError';
 import { getConfig } from '../../config';
 import { accountResource } from '../../domains/accounts/accounts.resource';
 

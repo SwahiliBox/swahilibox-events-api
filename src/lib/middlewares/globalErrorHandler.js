@@ -1,4 +1,4 @@
-import CustomError from '../helpers/customError';
+import CustomError from '../util/customError';
 
 const errorHandler = (err, req, res, next) => {
   if (res.headersSent) {
