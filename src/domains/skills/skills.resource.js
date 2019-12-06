@@ -12,6 +12,19 @@ class SkillsResource {
     return created[0];
   }
 
+  async getSkillById(skillId) {
+    const skill = await knexInstance(SKILLS_TABLE)
+      .select('*')
+      .where('id', skillId)
+      .first();
+
+    if (!skill) {
+      throw new SkillNotFoundError(404, `no skill with id ${skillId} found`);
+    }
+
+    return skill;
+  }
+
   async getSkillByName(skillName) {
     const skill = await knexInstance(SKILLS_TABLE)
       .select('*')
@@ -58,6 +71,12 @@ class SkillsResource {
         tags: knexInstance.raw('array_remove(tags, ?)', tag),
       })
       .where('id', skillId);
+  }
+
+  async deleteSkill(skillId) {
+    await knexInstance(SKILLS_TABLE)
+      .where('id', skillId)
+      .delete();
   }
 }
 

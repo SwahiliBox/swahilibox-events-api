@@ -26,6 +26,25 @@ describeDbTestSuite('SkillsResource', () => {
     });
   });
 
+  describe('getSkillById', () => {
+    const createSkillBody = {
+      name: 'ember',
+      tags: ['ember', 'ember.js', 'emberjs', 'ember js'],
+    };
+
+    test('it should get a skill given the correct id', async () => {
+      const createdSkill = await skillsResource.create(createSkillBody);
+      const fetchedSkill = await skillsResource.getSkillById(createdSkill.id);
+      expect(fetchedSkill).toMatchObject(createdSkill);
+    });
+
+    test('it should throw SkillNotFoundError if skill does not exist', async () => {
+      expect(skillsResource.getSkillById('randomId')).rejects.toThrow(
+        SkillNotFoundError,
+      );
+    });
+  });
+
   describe('getSkillByName', () => {
     test('it should throw an error if skill not found', async () => {
       try {
@@ -120,6 +139,7 @@ describeDbTestSuite('SkillsResource', () => {
       ]);
     });
   });
+
   describe('removeSkillTag', () => {
     const createSkillBody = {
       name: 'ember',
@@ -130,6 +150,22 @@ describeDbTestSuite('SkillsResource', () => {
       await skillsResource.removeSkillTag('javascript', createdSkill.id);
       const updatedSkill = await skillsResource.getSkillByName('ember');
       expect(updatedSkill).toHaveProperty('tags', ['emberjs', 'frontend']);
+    });
+  });
+
+  describe('deleteSkill', () => {
+    const createSkillBody = {
+      name: 'ember',
+      tags: ['emberjs', 'javascript', 'frontend'],
+    };
+
+    test('it should delete skill given id', async () => {
+      const createdSkill = await skillsResource.create(createSkillBody);
+      const { id: skillId } = createdSkill;
+      await skillsResource.deleteSkill(skillId);
+      expect(skillsResource.getSkillById(skillId)).rejects.toThrow(
+        SkillNotFoundError,
+      );
     });
   });
 });
