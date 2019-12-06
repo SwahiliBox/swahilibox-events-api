@@ -28,21 +28,16 @@ class SkillsResource {
   }
 
   async updateSkill(updateBody, skillId) {
+    const skill = updateBody;
+    if (skill.tags) {
+      skill.tags = knexInstance.raw('array_cat(tags, ?)', [updateBody.tags]);
+    }
     const updatedSkill = await knexInstance(SKILLS_TABLE)
-      .update(updateBody)
+      .update(skill)
       .where('id', skillId)
-      .returning(['id', 'name', 'tags']);
+      .returning(['id', 'name', 'status', 'tags']);
 
-    return updatedSkill;
-  }
-
-  async updateSkillNameOrStatus(field, value, skillId) {
-    const updatedSkill = await knexInstance(SKILLS_TABLE)
-      .update(field, value)
-      .where('id', skillId)
-      .returning(['id', 'name', 'tags']);
-
-    return updatedSkill;
+    return updatedSkill[0];
   }
 
   async getSkillsByTags(tags) {

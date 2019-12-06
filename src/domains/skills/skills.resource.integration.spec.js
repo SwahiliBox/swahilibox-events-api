@@ -75,4 +75,49 @@ describeDbTestSuite('SkillsResource', () => {
       expect(skills[1].name).toEqual('react');
     });
   });
+
+  describe('updateSkill', () => {
+    const createSkillBody1 = {
+      name: 'ember',
+      tags: ['emberjs'],
+    };
+
+    test('it should update skill name', async () => {
+      const createdSkill = await skillsResource.create(createSkillBody1);
+      const updatedSkill = await skillsResource.updateSkill(
+        {
+          name: 'emberjs',
+        },
+        createdSkill.id,
+      );
+      expect(updatedSkill).toHaveProperty('name', 'emberjs');
+    });
+
+    test('it should update skill status', async () => {
+      const createdSkill = await skillsResource.create(createSkillBody1);
+      const updatedSkill = await skillsResource.updateSkill(
+        {
+          status: 'approved',
+        },
+        createdSkill.id,
+      );
+      expect(createdSkill).toHaveProperty('status', 'awaiting_approval');
+      expect(updatedSkill).toHaveProperty('status', 'approved');
+    });
+
+    test('it should update skill tags', async () => {
+      const createdSkill = await skillsResource.create(createSkillBody1);
+      const updatedSkill = await skillsResource.updateSkill(
+        {
+          tags: ['ember', 'javascript'],
+        },
+        createdSkill.id,
+      );
+      expect(updatedSkill).toHaveProperty('tags', [
+        'emberjs',
+        'ember',
+        'javascript',
+      ]);
+    });
+  });
 });
