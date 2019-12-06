@@ -51,6 +51,14 @@ class SkillsResource {
 
     return skills;
   }
+
+  async removeSkillTag(tag, skillId) {
+    await knexInstance(SKILLS_TABLE)
+      .update({
+        tags: knexInstance.raw('array_remove(tags, ?)', tag),
+      })
+      .where('id', skillId);
+  }
 }
 
 export const skillsResource = new SkillsResource();

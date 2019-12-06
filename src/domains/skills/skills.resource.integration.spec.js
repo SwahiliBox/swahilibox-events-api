@@ -77,13 +77,13 @@ describeDbTestSuite('SkillsResource', () => {
   });
 
   describe('updateSkill', () => {
-    const createSkillBody1 = {
+    const createSkillBody = {
       name: 'ember',
       tags: ['emberjs'],
     };
 
     test('it should update skill name', async () => {
-      const createdSkill = await skillsResource.create(createSkillBody1);
+      const createdSkill = await skillsResource.create(createSkillBody);
       const updatedSkill = await skillsResource.updateSkill(
         {
           name: 'emberjs',
@@ -94,7 +94,7 @@ describeDbTestSuite('SkillsResource', () => {
     });
 
     test('it should update skill status', async () => {
-      const createdSkill = await skillsResource.create(createSkillBody1);
+      const createdSkill = await skillsResource.create(createSkillBody);
       const updatedSkill = await skillsResource.updateSkill(
         {
           status: 'approved',
@@ -106,7 +106,7 @@ describeDbTestSuite('SkillsResource', () => {
     });
 
     test('it should update skill tags', async () => {
-      const createdSkill = await skillsResource.create(createSkillBody1);
+      const createdSkill = await skillsResource.create(createSkillBody);
       const updatedSkill = await skillsResource.updateSkill(
         {
           tags: ['ember', 'javascript'],
@@ -118,6 +118,18 @@ describeDbTestSuite('SkillsResource', () => {
         'ember',
         'javascript',
       ]);
+    });
+  });
+  describe('removeSkillTag', () => {
+    const createSkillBody = {
+      name: 'ember',
+      tags: ['emberjs', 'javascript', 'frontend'],
+    };
+    test('it should remove a tag from a skill', async () => {
+      const createdSkill = await skillsResource.create(createSkillBody);
+      await skillsResource.removeSkillTag('javascript', createdSkill.id);
+      const updatedSkill = await skillsResource.getSkillByName('ember');
+      expect(updatedSkill).toHaveProperty('tags', ['emberjs', 'frontend']);
     });
   });
 });
