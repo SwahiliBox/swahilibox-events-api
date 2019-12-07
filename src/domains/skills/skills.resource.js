@@ -12,6 +12,14 @@ class SkillsResource {
     return created[0];
   }
 
+  async getAllSkills(offset, limit) {
+    const skills = await knexInstance(SKILLS_TABLE)
+      .select('*')
+      .offset(offset)
+      .limit(limit);
+    return skills;
+  }
+
   async getSkillById(skillId) {
     const skill = await knexInstance(SKILLS_TABLE)
       .select('*')

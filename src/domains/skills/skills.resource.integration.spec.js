@@ -26,6 +26,43 @@ describeDbTestSuite('SkillsResource', () => {
     });
   });
 
+  describe.only('getAllSkills', () => {
+    test('it should return an empty array if no skills', async () => {
+      const skills = await skillsResource.getAllSkills();
+      expect(skills.length).toEqual(0);
+      expect(skills).toEqual([]);
+    });
+
+    test('it should return an array of all the skills in the database', async () => {
+      await skillsResource.create({ name: 'javascript' });
+      await skillsResource.create({ name: 'python' });
+      const skills = await skillsResource.getAllSkills(0, 5);
+      expect(skills.length).toEqual(2);
+      expect(skills[0]).toHaveProperty('name', 'javascript');
+      expect(skills[1]).toHaveProperty('name', 'python');
+    });
+
+    test('it should fetch paginated results', async () => {
+      const skillNames = [
+        'javascript',
+        'python',
+        'go',
+        'react',
+        'js',
+        'elixr',
+        'pascal',
+      ];
+      const createSkillPromises = skillNames.map(name =>
+        skillsResource.create({ name }),
+      );
+      await Promise.all(createSkillPromises);
+      const page1 = await skillsResource.getAllSkills(0, 2);
+      const page2 = await skillsResource.getAllSkills(2, 4);
+      expect(page1).toHaveLength(2);
+      expect(page2).toHaveLength(4);
+    });
+  });
+
   describe('getSkillById', () => {
     const createSkillBody = {
       name: 'ember',
