@@ -26,7 +26,7 @@ describeDbTestSuite('SkillsResource', () => {
     });
   });
 
-  describe.only('getAllSkills', () => {
+  describe('getAllSkills', () => {
     test('it should return an empty array if no skills', async () => {
       const skills = await skillsResource.getAllSkills();
       expect(skills.length).toEqual(0);
