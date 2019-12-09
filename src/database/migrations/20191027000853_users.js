@@ -124,12 +124,24 @@ async function createSkillsTable(knex) {
       .primary()
       .defaultTo(knex.raw('uuid_generate_v4()'));
 
-    table.string('name').notNullable();
+    table
+      .string('name')
+      .unique()
+      .notNullable();
 
     table
       .enu('status', ['approved', 'awaiting_approval', 'disapproved'])
       .defaultTo('awaiting_approval');
+
+    table.specificType('tags', 'varchar ARRAY');
   });
+
+  // index tags for easy querying
+  await knex.raw(
+    `
+    CREATE INDEX tags_index ON ${SKILLS_TABLE} USING GIN(tags); 
+    `,
+  );
 
   await addTableTimestamps(knex, SKILLS_TABLE);
 }
