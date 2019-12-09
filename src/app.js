@@ -19,14 +19,14 @@ class App {
     this.addApiRoute(getAccountsRouter());
     this.addApiRoute(getSkillsRouter());
 
+    if (app.get('env') === 'development') {
+      app.use(morgan('dev'));
+    }
+
     if (this.routes.length !== 0) {
       this.routes.forEach(route => {
         app.use(route);
       });
-    }
-
-    if (app.get('env') === 'development') {
-      app.use(morgan('dev'));
     }
 
     // errorHandler should be added as the last middleware to the app
