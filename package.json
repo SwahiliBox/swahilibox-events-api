@@ -47,7 +47,7 @@
     "@babel/runtime": "^7.6.3",
     "@hapi/joi": "^16.1.7",
     "babel-polyfill": "^6.26.0",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "codecov": "^3.6.1",
     "env-cmd": "^10.0.1",
     "express": "^4.17.1",
